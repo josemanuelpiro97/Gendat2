@@ -332,7 +332,7 @@ public class Usuario implements Sujeto {
         int valInicial = (variante.getHoraInicio() * 60) + variante.getMinInicio();
         int valFinal = (variante.getHoraFin() * 60) + variante.getMinFin();
         int dia = variante.getDia();
-        for (int i = valInicial - 1; i < valFinal - 1; i++) {
+        for (int i = valInicial - 1; i < valFinal - 2; i++) {
             if (this.horariosOcupados[dia][i] == 1)
                 return false;
         }
@@ -343,7 +343,7 @@ public class Usuario implements Sujeto {
         int valInicial = (variante.getHoraInicio() * 60) + variante.getMinInicio();
         int valFinal = (variante.getHoraFin() * 60) + variante.getMinFin();
         int dia = variante.getDia();
-        for (int i = valInicial - 1; i < valFinal - 1; i++) {
+        for (int i = valInicial - 1; i < valFinal - 2; i++) {
             this.horariosOcupados[dia][i] = 1;
         }
     }
