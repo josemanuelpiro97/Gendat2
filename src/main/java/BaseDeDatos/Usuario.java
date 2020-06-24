@@ -160,6 +160,11 @@ public class Usuario implements Sujeto {
     //-------------SETTERS----------------------
     //******************************************
 
+    public void setAgendaSeleccionada(Agenda agenda) {
+        this.agendaSeleccionada = agenda;
+        this.notificarObservador();
+    }
+
     /**
      * @param evento evento a agregar
      * @brief agrega un evento a nuestra lista de eventos y retorna un mensaje de confirmacion
@@ -351,4 +356,6 @@ public class Usuario implements Sujeto {
             this.horariosOcupados[dia][i] = 0;
         }
     }
+
+
 }

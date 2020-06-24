@@ -9,7 +9,7 @@ public class Agenda {
      * id de la agenda
      */
     private int ID = 0;
-    private static int idCount = 0;
+    public static int idCount = 0;
     /**
      * lista de materias que pertenecen a esta agenda
      */
@@ -31,7 +31,7 @@ public class Agenda {
 
         //asigno ID luego incremento
         this.ID = Agenda.idCount;
-        idCount++;
+         idCount++;
     }
 
     //-------------GETTERS----------------------
@@ -78,10 +78,6 @@ public class Agenda {
         this.listaEventos.add(evento);
     }
 
-    //-------------TOOLS------------------------
-    //******************************************
-    public void resetCountID(){
-        Agenda.idCount = 0;
-    }
+
 
 }

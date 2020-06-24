@@ -60,8 +60,17 @@ public class VistaAgendas extends javax.swing.JPanel implements Observador{
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Agendas");
 
-        BtSeleccionarA.setText("Seleccionar Agenda");
         jScrollPane1.setViewportView(jList1);
+
+        BtSeleccionarA.setText("Seleccionar Agenda");
+        BtSeleccionarA.setMaximumSize(new java.awt.Dimension(120, 25));
+        BtSeleccionarA.setMinimumSize(new java.awt.Dimension(120, 25));
+        BtSeleccionarA.setPreferredSize(new java.awt.Dimension(135, 25));
+        BtSeleccionarA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtSeleccionarAActionPerformed(evt);
+            }
+        });
 
         BtEliminarA.setText("Eliminar Agenda");
         BtEliminarA.setMaximumSize(new java.awt.Dimension(120, 25));
@@ -121,21 +130,22 @@ public class VistaAgendas extends javax.swing.JPanel implements Observador{
         }
         else {
             int index = jList1.getSelectedIndex();
-            String NombreAgenda1 = modeloLista.get(index).toString();
-            EliminarDeListaA(NombreAgenda1);
+            this.modeloLista.removeElementAt(index);
         }
     }//GEN-LAST:event_BtEliminarAActionPerformed
 
-    //-------------METODOS----------------------
-    //******************************************
-    /**
-     * Elimino el elemento seleccionado de la lista
-     * @param NombreAgenda1
-     */
-    public void EliminarDeListaA(String NombreAgenda1){
-        modeloLista.removeElement(NombreAgenda1);
+    private void BtSeleccionarAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEliminarAActionPerformed
+        int index = jList1.getSelectedIndex();
+        Usuario usuario = (Usuario)this.usuario;
+
+        //agenda seleccionada
+        Agenda agenda = usuario.getAgenda(index);
+
+        usuario.setAgendaSeleccionada(agenda);
     }
 
+    //-------------METODOS----------------------
+    //******************************************
     /**
      * @brief vacio la vista de avendas
      */
@@ -169,6 +179,13 @@ public class VistaAgendas extends javax.swing.JPanel implements Observador{
             }
             this.modeloLista.addElement(agendaActual.getID());
         }
+    }
+
+    /**
+     * desinscribe al observador
+     */
+    public void desinscribir(){
+        this.usuario.removerObservador(this);
     }
     //-------------INTERFAZ----------------------
     //******************************************

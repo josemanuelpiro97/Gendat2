@@ -222,6 +222,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
         if (input == 0) {
             this.setVisible(false);
             vistaIngresar.setVisible(true);
+
+            //desinscribo los observadores
+            this.vistaAgendas.desinscribir();
+            this.vistaSeleccion.deinscribir();
         }
     }//GEN-LAST:event_botonCerrarSesionActionPerformed
 
@@ -295,6 +299,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         //setea el sujeto en los observadores
         this.vistaAgendas.setSujeto(this.baseDeDatos.getUsuario(nombreUsuario));
+        this.vistaSeleccion.setSujeto(this.baseDeDatos.getUsuario(nombreUsuario));
     }
 
     /**

@@ -87,9 +87,6 @@ public class CreadorAgendas {
             //creo agenda nueva
             Agenda agendaGenerada = new Agenda();
 
-            //reseteo el contador de agendas
-            agendaGenerada.resetCountID();
-
             //seteo los horarios obligatorios en los horarios ocupados
             this.horariosOcupados = this.horariosObligatorios;
 
@@ -108,6 +105,7 @@ public class CreadorAgendas {
             this.vaciarHorariosOcupados();
         }
 
+        Agenda.idCount = 0;
         return agendas;
     }
 

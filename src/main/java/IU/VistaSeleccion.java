@@ -178,6 +178,12 @@ public class VistaSeleccion extends javax.swing.JPanel implements Observador {
 
     }
 
+    /**
+     * desinscribe al observador
+     */
+    public void deinscribir() {
+        this.usuario.removerObservador(this);
+    }
     //-------------INTERFAZ----------------------
     //******************************************
     @Override
@@ -191,5 +197,7 @@ public class VistaSeleccion extends javax.swing.JPanel implements Observador {
     public int getID() {
         return 0;
     }
+
+
     // End of variables declaration//GEN-END:variables
 }
