@@ -33,6 +33,11 @@ public class Usuario implements Sujeto {
     private ArrayList<Agenda> agendas;
 
     /**
+     * agenda selecciona actualmente
+     */
+    private Agenda agendaSeleccionada;
+
+    /**
      * variables destinadas al control de rangos de horarios
      */
     private final int NUM_DIAS = 7;
@@ -88,6 +93,10 @@ public class Usuario implements Sujeto {
      */
     public ArrayList<Agenda> getAgendas() {
         return this.agendas;
+    }
+
+    public Agenda getAgendaSeleccionada(){
+        return this.agendaSeleccionada;
     }
 
     /**

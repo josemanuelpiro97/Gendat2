@@ -1,12 +1,25 @@
 package IU;
 
+import BaseDeDatos.Agenda;
+import BaseDeDatos.Usuario;
+import Observer.Observador;
+import Observer.Sujeto;
+
 /**
  *
  * @author FedeSSD
  */
-public class VistaSeleccion extends javax.swing.JPanel {
+public class VistaSeleccion extends javax.swing.JPanel implements Observador {
+    //campo de vista principal
     VistaPrincipal vistaPrincipal;
+    //sujeto a quien observar
+    Sujeto usuario;
+    //agenda que muestro
+    Agenda agendaSeleccionada;
+
+
     public VistaSeleccion(VistaPrincipal vp) {
+        //inicializo componentes
         initComponents();
         this.vistaPrincipal = vp;
     }
@@ -141,5 +154,42 @@ public class VistaSeleccion extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable AgendaSemanal;
     private javax.swing.JScrollPane jScrollPane1;
+
+
+
+
+
+    //-------------METODOS----------------------
+    //******************************************
+    /**
+     * @brief setea el usuario actual en la vista
+     * @param usuario usuario que observara la vista
+     */
+    public void setSujeto(Sujeto usuario){
+        //asigno el sujeto y me registro
+        this.usuario = usuario;
+        this.usuario.registrarObservador(this);
+    }
+
+    /**
+     * @brief metodo que actualiza la informacion de la vista
+     */
+    public void actualizarVista(){
+
+    }
+
+    //-------------INTERFAZ----------------------
+    //******************************************
+    @Override
+    public void actualizar() {
+        Usuario usuarioCast = (Usuario)this.usuario;
+        this.agendaSeleccionada = usuarioCast.getAgendaSeleccionada();
+        this.actualizarVista();
+    }
+
+    @Override
+    public int getID() {
+        return 0;
+    }
     // End of variables declaration//GEN-END:variables
 }

@@ -20,11 +20,15 @@ import java.util.ArrayList;
  * @author FedeSSD
  */
 public class VistaAgendas extends javax.swing.JPanel implements Observador{
+    //-------------VARIABLES----------------------
+    //**********************************************
     VistaPrincipal vistaPrincipal;
     Sujeto usuario;
     ArrayList<Agenda> agendas;
     DefaultListModel modeloLista = new DefaultListModel();
 
+    //-------------CONSTRUCTOR----------------------
+    //**********************************************
     public VistaAgendas(VistaPrincipal vp) {
         //inicializo variables
         this.usuario = new Usuario();
@@ -34,6 +38,8 @@ public class VistaAgendas extends javax.swing.JPanel implements Observador{
         jList1.setModel(modeloLista);
     }
 
+    //-------------NO TOCAR----------------------
+    //**********************************************
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -99,7 +105,15 @@ public class VistaAgendas extends javax.swing.JPanel implements Observador{
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtEliminarA;
+    private javax.swing.JButton BtSeleccionarA;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JScrollPane jScrollPane1;
 
+    //-------------BOTONES----------------------
+    //******************************************
     private void BtEliminarAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEliminarAActionPerformed
         boolean seleccion = jList1.isSelectionEmpty();
         if(seleccion) {
@@ -112,6 +126,32 @@ public class VistaAgendas extends javax.swing.JPanel implements Observador{
         }
     }//GEN-LAST:event_BtEliminarAActionPerformed
 
+    //-------------METODOS----------------------
+    //******************************************
+    /**
+     * Elimino el elemento seleccionado de la lista
+     * @param NombreAgenda1
+     */
+    public void EliminarDeListaA(String NombreAgenda1){
+        modeloLista.removeElement(NombreAgenda1);
+    }
+
+    /**
+     * @brief vacio la vista de avendas
+     */
+    public void vaciarLista() {
+        this.modeloLista.clear();
+    }
+
+    /**
+     * @brief setea el usuario actual en la vista
+     * @param usuario usuario que observara la vista
+     */
+    public void setSujeto(Sujeto usuario){
+        //asigno el sujeto y me registro
+        this.usuario = usuario;
+        this.usuario.registrarObservador(this);
+    }
 
     /**
      * Agrego a la lista las agendas generadas
@@ -130,42 +170,8 @@ public class VistaAgendas extends javax.swing.JPanel implements Observador{
             this.modeloLista.addElement(agendaActual.getID());
         }
     }
-
-    /**
-     * Elimino el elemento seleccionado de la lista
-     * @param NombreAgenda1
-     */
-    public void EliminarDeListaA(String NombreAgenda1){
-        modeloLista.removeElement(NombreAgenda1);
-    }
-
-    /**
-     * @brief vacio la vista de avendas
-     */
-    public void vaciarLista() {
-        this.modeloLista.clear();
-    }
-
-
-
-    /**
-     * @brief setea el usuario actual en la vista
-     * @param usuario usuario que observara la vista
-     */
-    public void setSujeto(Sujeto usuario){
-        //asigno el sujeto y me registro
-        this.usuario = usuario;
-        this.usuario.registrarObservador(this);
-    }
-
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtEliminarA;
-    private javax.swing.JButton BtSeleccionarA;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JScrollPane jScrollPane1;
-
+    //-------------INTERFAZ----------------------
+    //******************************************
     @Override
     public void actualizar() {
         Usuario usuarioCast = (Usuario)this.usuario;

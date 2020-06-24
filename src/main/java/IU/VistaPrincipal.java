@@ -316,7 +316,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
     public void updateAgendas() {
         this.vistaAgendas.vaciarLista();
         this.vistaAgendas.actualizar();
-
     }
 
     /**
