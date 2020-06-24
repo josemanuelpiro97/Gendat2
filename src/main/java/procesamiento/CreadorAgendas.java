@@ -27,7 +27,6 @@ public class CreadorAgendas {
     public CreadorAgendas(ArrayList<EventoInterfaz> listaDeEventos, int[][] horariosOcupados) {
         this.horariosOcupados = horariosOcupados;
         this.horariosObligatorios = horariosOcupados;
-        this.eventosObligatorios = new ArrayList<EventoInterfaz>();
         this.eventosRegulares = new ArrayList<EventoInterfaz>();
 
 
