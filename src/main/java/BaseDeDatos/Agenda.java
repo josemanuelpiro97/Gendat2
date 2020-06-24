@@ -31,7 +31,7 @@ public class Agenda {
 
         //asigno ID luego incremento
         this.ID = Agenda.idCount;
-         idCount++;
+
     }
 
     //-------------GETTERS----------------------

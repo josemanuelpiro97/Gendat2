@@ -21,81 +21,7 @@ public class VistaSeleccion extends javax.swing.JPanel implements Observador {
 
     public VistaSeleccion(VistaPrincipal vp) {
         //arranco matrix
-        this.matrix = new Object [][] {
-                {"06:00", null, null, null, null, null, null, null},
-                {"06:15", null, null, null, null, null, null, null},
-                {"06:30", null, null, null, null, null, null, null},
-                {"06:45", null, null, null, null, null, null, null},
-                {"07:00", null, null, null, null, null, null, null},
-                {"07:15", null, null, null, null, null, null, null},
-                {"07:30", null, null, null, null, null, null, null},
-                {"07:45", null, null, null, null, null, null, null},
-                {"08:00", null, null, null, null, null, null, null},
-                {"08:15", null, null, null, null, null, null, null},
-                {"08:30", null, null, null, null, null, null, null},
-                {"08:45", null, null, null, null, null, null, null},
-                {"09:00", null, null, null, null, null, null, null},
-                {"09:15", null, null, null, null, null, null, null},
-                {"09:30", null, null, null, null, null, null, null},
-                {"09:45", null, null, null, null, null, null, null},
-                {"10:00", null, null, null, null, null, null, null},
-                {"10:15", null, null, null, null, null, null, null},
-                {"10:30", null, null, null, null, null, null, null},
-                {"10:45", null, null, null, null, null, null, null},
-                {"11:00", null, null, null, null, null, null, null},
-                {"11:15", null, null, null, null, null, null, null},
-                {"11:30", null, null, null, null, null, null, null},
-                {"11:45", null, null, null, null, null, null, null},
-                {"12:00", null, null, null, null, null, null, null},
-                {"12:15", null, null, null, null, null, null, null},
-                {"12:30", null, null, null, null, null, null, null},
-                {"12:45", null, null, null, null, null, null, null},
-                {"13:00", null, null, null, null, null, null, null},
-                {"13:15", null, null, null, null, null, null, null},
-                {"13:30", null, null, null, null, null, null, null},
-                {"13:45", null, null, null, null, null, null, null},
-                {"14:00", null, null, null, null, null, null, null},
-                {"14:15", null, null, null, null, null, null, null},
-                {"14:30", null, null, null, null, null, null, null},
-                {"14:45", null, null, null, null, null, null, null},
-                {"15:00", null, null, null, null, null, null, null},
-                {"15:15", null, null, null, null, null, null, null},
-                {"15:30", null, null, null, null, null, null, null},
-                {"15:45", null, null, null, null, null, null, null},
-                {"16:00", null, null, null, null, null, null, null},
-                {"16:15", null, null, null, null, null, null, null},
-                {"16:30", null, null, null, null, null, null, null},
-                {"16:45", null, null, null, null, null, null, null},
-                {"17:00", null, null, null, null, null, null, null},
-                {"17:15", null, null, null, null, null, null, null},
-                {"17:30", null, null, null, null, null, null, null},
-                {"17:45", null, null, null, null, null, null, null},
-                {"18:00", null, null, null, null, null, null, null},
-                {"18:15", null, null, null, null, null, null, null},
-                {"18:30", null, null, null, null, null, null, null},
-                {"18:45", null, null, null, null, null, null, null},
-                {"19:00", null, null, null, null, null, null, null},
-                {"19:15", null, null, null, null, null, null, null},
-                {"19:30", null, null, null, null, null, null, null},
-                {"19:45", null, null, null, null, null, null, null},
-                {"20:00", null, null, null, null, null, null, null},
-                {"20:15", null, null, null, null, null, null, null},
-                {"20:30", null, null, null, null, null, null, null},
-                {"20:45", null, null, null, null, null, null, null},
-                {"21:00", null, null, null, null, null, null, null},
-                {"21:15", null, null, null, null, null, null, null},
-                {"21:30", null, null, null, null, null, null, null},
-                {"21:45", null, null, null, null, null, null, null},
-                {"22:00", null, null, null, null, null, null, null},
-                {"22:15", null, null, null, null, null, null, null},
-                {"22:30", null, null, null, null, null, null, null},
-                {"22:45", null, null, null, null, null, null, null},
-                {"23:00", null, null, null, null, null, null, null},
-                {"23:15", null, null, null, null, null, null, null},
-                {"23:30", null, null, null, null, null, null, null},
-                {"23:45", null, null, null, null, null, null, null},
-                {"00:00", null, null, null, null, null, null, null}
-        };
+        this.limpiarVista();
 
         //inicializo componentes
         initComponents();
@@ -179,6 +105,9 @@ public class VistaSeleccion extends javax.swing.JPanel implements Observador {
      * @brief metodo que actualiza la informacion de la vista
      */
     public void actualizarVista(){
+        //primero limpio la vista
+        this.limpiarVista();
+
         Usuario usuario = (Usuario) this.usuario;
         Agenda agendaParaPoner = usuario.getAgendaSeleccionada();
 
@@ -210,6 +139,84 @@ public class VistaSeleccion extends javax.swing.JPanel implements Observador {
                 }));
     }
 
+    public void limpiarVista(){
+        this.matrix = new Object [][] {
+                {"06:00", null, null, null, null, null, null, null},
+                {"06:15", null, null, null, null, null, null, null},
+                {"06:30", null, null, null, null, null, null, null},
+                {"06:45", null, null, null, null, null, null, null},
+                {"07:00", null, null, null, null, null, null, null},
+                {"07:15", null, null, null, null, null, null, null},
+                {"07:30", null, null, null, null, null, null, null},
+                {"07:45", null, null, null, null, null, null, null},
+                {"08:00", null, null, null, null, null, null, null},
+                {"08:15", null, null, null, null, null, null, null},
+                {"08:30", null, null, null, null, null, null, null},
+                {"08:45", null, null, null, null, null, null, null},
+                {"09:00", null, null, null, null, null, null, null},
+                {"09:15", null, null, null, null, null, null, null},
+                {"09:30", null, null, null, null, null, null, null},
+                {"09:45", null, null, null, null, null, null, null},
+                {"10:00", null, null, null, null, null, null, null},
+                {"10:15", null, null, null, null, null, null, null},
+                {"10:30", null, null, null, null, null, null, null},
+                {"10:45", null, null, null, null, null, null, null},
+                {"11:00", null, null, null, null, null, null, null},
+                {"11:15", null, null, null, null, null, null, null},
+                {"11:30", null, null, null, null, null, null, null},
+                {"11:45", null, null, null, null, null, null, null},
+                {"12:00", null, null, null, null, null, null, null},
+                {"12:15", null, null, null, null, null, null, null},
+                {"12:30", null, null, null, null, null, null, null},
+                {"12:45", null, null, null, null, null, null, null},
+                {"13:00", null, null, null, null, null, null, null},
+                {"13:15", null, null, null, null, null, null, null},
+                {"13:30", null, null, null, null, null, null, null},
+                {"13:45", null, null, null, null, null, null, null},
+                {"14:00", null, null, null, null, null, null, null},
+                {"14:15", null, null, null, null, null, null, null},
+                {"14:30", null, null, null, null, null, null, null},
+                {"14:45", null, null, null, null, null, null, null},
+                {"15:00", null, null, null, null, null, null, null},
+                {"15:15", null, null, null, null, null, null, null},
+                {"15:30", null, null, null, null, null, null, null},
+                {"15:45", null, null, null, null, null, null, null},
+                {"16:00", null, null, null, null, null, null, null},
+                {"16:15", null, null, null, null, null, null, null},
+                {"16:30", null, null, null, null, null, null, null},
+                {"16:45", null, null, null, null, null, null, null},
+                {"17:00", null, null, null, null, null, null, null},
+                {"17:15", null, null, null, null, null, null, null},
+                {"17:30", null, null, null, null, null, null, null},
+                {"17:45", null, null, null, null, null, null, null},
+                {"18:00", null, null, null, null, null, null, null},
+                {"18:15", null, null, null, null, null, null, null},
+                {"18:30", null, null, null, null, null, null, null},
+                {"18:45", null, null, null, null, null, null, null},
+                {"19:00", null, null, null, null, null, null, null},
+                {"19:15", null, null, null, null, null, null, null},
+                {"19:30", null, null, null, null, null, null, null},
+                {"19:45", null, null, null, null, null, null, null},
+                {"20:00", null, null, null, null, null, null, null},
+                {"20:15", null, null, null, null, null, null, null},
+                {"20:30", null, null, null, null, null, null, null},
+                {"20:45", null, null, null, null, null, null, null},
+                {"21:00", null, null, null, null, null, null, null},
+                {"21:15", null, null, null, null, null, null, null},
+                {"21:30", null, null, null, null, null, null, null},
+                {"21:45", null, null, null, null, null, null, null},
+                {"22:00", null, null, null, null, null, null, null},
+                {"22:15", null, null, null, null, null, null, null},
+                {"22:30", null, null, null, null, null, null, null},
+                {"22:45", null, null, null, null, null, null, null},
+                {"23:00", null, null, null, null, null, null, null},
+                {"23:15", null, null, null, null, null, null, null},
+                {"23:30", null, null, null, null, null, null, null},
+                {"23:45", null, null, null, null, null, null, null},
+                {"00:00", null, null, null, null, null, null, null}
+        };
+    }
+
     /**
      * @brief completa los casilleros correspondientes con el nombre de la materia/evento
      * @param tokens numero de casilleros a pintar
@@ -220,7 +227,7 @@ public class VistaSeleccion extends javax.swing.JPanel implements Observador {
         //dado que la primer columna es para los horarios
         int columna = dia + 1;
         for (int i = tokenIni ; i< tokenIni+tokens ; i++){
-            this.matrix[columna][i] = nombre;
+            this.matrix[i][columna] = nombre;
         }
     }
 
@@ -235,7 +242,7 @@ public class VistaSeleccion extends javax.swing.JPanel implements Observador {
     public int getTokens(int horaInicio,int horaFin, int minInicio, int minFinal){
         int minInicial = (horaInicio * 60 + minInicio);
         int minFin = (horaFin *60 + minFinal);
-        float dif = minFin - minFinal;
+        float dif = minFin - minInicial;
 
         //redondeo ya que al final del rango de horario se escribe un minuto menos
         int cantidadTokens = Math.round(dif/15);

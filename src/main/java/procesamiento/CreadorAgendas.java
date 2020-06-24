@@ -103,6 +103,9 @@ public class CreadorAgendas {
 
             //vacio horarios para futura iteracion
             this.vaciarHorariosOcupados();
+
+            //aumento contador
+            Agenda.idCount++;
         }
 
         Agenda.idCount = 0;
