@@ -1,5 +1,7 @@
 package BaseDeDatos;
 
+import IU.VistaAgendas;
+import IU.VistaSeleccion;
 import Observer.Observador;
 import Observer.Sujeto;
 import procesamiento.CreadorAgendas;
@@ -17,6 +19,7 @@ public class Usuario implements Sujeto {
      * lista de los observadores que hacen uso de esta base de datos
      */
     private ArrayList<Observador> listaDeObservadores;
+
 
     //------------requerido por usuario---------
     /**
@@ -70,7 +73,7 @@ public class Usuario implements Sujeto {
     /**
      * constructor vacio
      */
-    public Usuario(){
+    public Usuario() {
         this.nombreDeUsuario = "";
         this.listaEventosInterfaz = new ArrayList<EventoInterfaz>();
         this.agendas = new ArrayList<Agenda>();
@@ -96,7 +99,7 @@ public class Usuario implements Sujeto {
         return this.agendas;
     }
 
-    public Agenda getAgendaSeleccionada(){
+    public Agenda getAgendaSeleccionada() {
         return this.agendaSeleccionada;
     }
 
@@ -129,9 +132,10 @@ public class Usuario implements Sujeto {
 
     /**
      * getter del nombre de usuario
+     *
      * @return nombre de usuario
      */
-    public String getNombreDeUsuario(){
+    public String getNombreDeUsuario() {
         return this.nombreDeUsuario;
     }
 
@@ -151,10 +155,10 @@ public class Usuario implements Sujeto {
     }
 
     /**
-     * @brief retorna horarios ocupados por eventos obligatorios
      * @return arreglo de horarios obligatorios ocupados
+     * @brief retorna horarios ocupados por eventos obligatorios
      */
-    public int[][] getHorariosOcupados(){
+    public int[][] getHorariosOcupados() {
         return this.horariosOcupados;
     }
 
@@ -163,7 +167,11 @@ public class Usuario implements Sujeto {
 
     public void setAgendaSeleccionada(Agenda agenda) {
         this.agendaSeleccionada = agenda;
-        this.notificarObservador();
+
+        for (Observador observadorActual : this.listaDeObservadores) {
+            if (observadorActual instanceof VistaSeleccion)
+                this.notificarObservador(observadorActual.getID());
+        }
     }
 
     /**
@@ -210,11 +218,9 @@ public class Usuario implements Sujeto {
                     if (eventoActual.getListaVariantes().size() == 1) {
                         //si es obligatorio y ya hay una variante retorno mensaje de error
                         return msjERROR3;
-                    }
-                    else if (!this.estaEnRango(variante)) {
+                    } else if (!this.estaEnRango(variante)) {
                         return msjERROR2;
-                    }
-                    else {
+                    } else {
                         //ocupo rango
                         this.setHorarioOcupado(variante);
                     }
@@ -305,23 +311,31 @@ public class Usuario implements Sujeto {
     }
 
     @Override
-    public void notificarObservador() {
+    public void notificarObservador(int ID) {
         for (Observador observadorActual : this.listaDeObservadores) {
-            observadorActual.actualizar();
+            if (observadorActual.getID() == ID)
+                observadorActual.actualizar();
         }
+    }
+
+    @Override
+    public int getCantObservadores() {
+        return this.listaDeObservadores.size();
     }
 
     //----------------TOOLS----------------------------
     //**************************************************
 
-    public void generarAgendas(){
+    public void generarAgendas() {
         //creo el creador de agendas
-        CreadorAgendas creadorAgendas = new CreadorAgendas(this.listaEventosInterfaz,this.horariosOcupados);
+        CreadorAgendas creadorAgendas = new CreadorAgendas(this.listaEventosInterfaz, this.horariosOcupados);
         this.agendas = creadorAgendas.generarAgendas();
 
-        this.notificarObservador();
+        for (Observador observadorActual : this.listaDeObservadores) {
+            if (observadorActual instanceof VistaAgendas)
+                this.notificarObservador(observadorActual.getID());
+        }
     }
-
 
     /**
      * @param variante variante del evento

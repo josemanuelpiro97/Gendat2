@@ -16,14 +16,14 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 /**
- *
  * @author FedeSSD
  */
-public class VistaAgendas extends javax.swing.JPanel implements Observador{
+public class VistaAgendas extends javax.swing.JPanel implements Observador {
     //-------------VARIABLES----------------------
     //**********************************************
     VistaPrincipal vistaPrincipal;
     Sujeto usuario;
+    int observadorID;
     ArrayList<Agenda> agendas;
     DefaultListModel modeloLista = new DefaultListModel();
 
@@ -40,6 +40,7 @@ public class VistaAgendas extends javax.swing.JPanel implements Observador{
 
     //-------------NO TOCAR----------------------
     //**********************************************
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -85,35 +86,36 @@ public class VistaAgendas extends javax.swing.JPanel implements Observador{
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(117, 117, 117))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(BtEliminarA, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BtSeleccionarA)))
-                .addGap(18, 18, 18))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1)
+                                .addGap(117, 117, 117))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jScrollPane1)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(BtEliminarA, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(BtSeleccionarA)))
+                                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BtSeleccionarA)
-                    .addComponent(BtEliminarA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(BtSeleccionarA)
+                                        .addComponent(BtEliminarA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtEliminarA;
     private javax.swing.JButton BtSeleccionarA;
@@ -125,27 +127,32 @@ public class VistaAgendas extends javax.swing.JPanel implements Observador{
     //******************************************
     private void BtEliminarAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEliminarAActionPerformed
         boolean seleccion = jList1.isSelectionEmpty();
-        if(seleccion) {
+        if (seleccion) {
             JOptionPane.showMessageDialog(null, "No selecciono ninguna Agenda a eliminar.");
-        }
-        else {
+        } else {
             int index = jList1.getSelectedIndex();
             this.modeloLista.removeElementAt(index);
         }
     }//GEN-LAST:event_BtEliminarAActionPerformed
 
     private void BtSeleccionarAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtEliminarAActionPerformed
-        int index = jList1.getSelectedIndex();
-        Usuario usuario = (Usuario)this.usuario;
+        boolean seleccion = jList1.isSelectionEmpty();
+        if (seleccion) {
+            JOptionPane.showMessageDialog(null, "No se esta seleccionada ninguna agenda.");
+        } else {
+            int index = jList1.getSelectedIndex();
+            Usuario usuario = (Usuario) this.usuario;
 
-        //agenda seleccionada
-        Agenda agenda = usuario.getAgenda(index);
+            //agenda seleccionada
+            Agenda agenda = usuario.getAgenda(index);
 
-        usuario.setAgendaSeleccionada(agenda);
+            usuario.setAgendaSeleccionada(agenda);
+        }
     }
 
     //-------------METODOS----------------------
     //******************************************
+
     /**
      * @brief vacio la vista de avendas
      */
@@ -154,26 +161,28 @@ public class VistaAgendas extends javax.swing.JPanel implements Observador{
     }
 
     /**
-     * @brief setea el usuario actual en la vista
      * @param usuario usuario que observara la vista
+     * @brief setea el usuario actual en la vista
      */
-    public void setSujeto(Sujeto usuario){
+    public void setSujeto(Sujeto usuario) {
         //asigno el sujeto y me registro
         this.usuario = usuario;
+        this.observadorID = this.usuario.getCantObservadores();
         this.usuario.registrarObservador(this);
+
     }
 
     /**
      * Agrego a la lista las agendas generadas
      */
-    public void agregarAListaAgendas(){
-        for (Agenda agendaActual:this.agendas){
+    public void agregarAListaAgendas() {
+        for (Agenda agendaActual : this.agendas) {
             System.out.println("Se agrego la agenda numero: " + agendaActual.getID());
-            for (EventoInterfaz eventoActual : agendaActual.getListaEventos()){
+            for (EventoInterfaz eventoActual : agendaActual.getListaEventos()) {
                 System.out.print("Con los eventos: ");
                 System.out.println(eventoActual.getNombre() + " y su variante: " + eventoActual.getListaVariantes().get(0).getIdentificador());
             }
-            for (EventoInterfaz materiaActual : agendaActual.getListaMaterias()){
+            for (EventoInterfaz materiaActual : agendaActual.getListaMaterias()) {
                 System.out.print("Con las materias: ");
                 System.out.println(materiaActual.getNombre() + " y su comisiones: " + materiaActual.getListaVariantes().get(0).getIdentificador());
             }
@@ -184,14 +193,15 @@ public class VistaAgendas extends javax.swing.JPanel implements Observador{
     /**
      * desinscribe al observador
      */
-    public void desinscribir(){
+    public void desinscribir() {
         this.usuario.removerObservador(this);
     }
+
     //-------------INTERFAZ----------------------
     //******************************************
     @Override
     public void actualizar() {
-        Usuario usuarioCast = (Usuario)this.usuario;
+        Usuario usuarioCast = (Usuario) this.usuario;
         this.agendas = usuarioCast.getAgendas();
 
         //borro las agendas viejas
@@ -203,7 +213,7 @@ public class VistaAgendas extends javax.swing.JPanel implements Observador{
 
     @Override
     public int getID() {
-        return 0;
+        return this.observadorID;
     }
     // End of variables declaration//GEN-END:variables
 }

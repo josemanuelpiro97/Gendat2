@@ -20,5 +20,7 @@ public interface Sujeto {
     /**
      * @brief notifica a los observadores que los datos se actualizaron
      */
-    public void notificarObservador();
+    public void notificarObservador(int ID);
+
+    public int getCantObservadores();
 }

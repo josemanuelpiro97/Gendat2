@@ -13,6 +13,7 @@ public class VistaSeleccion extends javax.swing.JPanel implements Observador {
     VistaPrincipal vistaPrincipal;
     //sujeto a quien observar
     Sujeto usuario;
+    int observadorID;
     //agenda que muestro
     Agenda agendaSeleccionada;
     //arreglo para modulo
@@ -98,6 +99,7 @@ public class VistaSeleccion extends javax.swing.JPanel implements Observador {
     public void setSujeto(Sujeto usuario){
         //asigno el sujeto y me registro
         this.usuario = usuario;
+        this.observadorID = this.usuario.getCantObservadores();
         this.usuario.registrarObservador(this);
     }
 
@@ -280,7 +282,7 @@ public class VistaSeleccion extends javax.swing.JPanel implements Observador {
 
     @Override
     public int getID() {
-        return 0;
+        return this.observadorID;
     }
 
 
