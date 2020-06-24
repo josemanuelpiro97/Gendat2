@@ -25,8 +25,18 @@ public class CreadorAgendas {
      * @brief constructor de clase
      */
     public CreadorAgendas(ArrayList<EventoInterfaz> listaDeEventos, int[][] horariosOcupados) {
-        this.horariosOcupados = horariosOcupados;
-        this.horariosObligatorios = horariosOcupados;
+        this.horariosOcupados = new int[horariosOcupados.length][horariosOcupados[0].length];
+        this.horariosObligatorios = new int[horariosOcupados.length][horariosOcupados[0].length];
+
+        for (int i = 0 ; i < horariosOcupados.length ; i++){
+            for (int j = 0 ; j < horariosOcupados[0].length ; j++){
+                this.horariosObligatorios [i][j] = horariosOcupados [i][j];
+                this.horariosOcupados [i][j] = horariosOcupados [i][j];
+            }
+        }
+
+
+        this.eventosObligatorios = new ArrayList<EventoInterfaz>();
         this.eventosRegulares = new ArrayList<EventoInterfaz>();
 
 
@@ -87,7 +97,11 @@ public class CreadorAgendas {
             Agenda agendaGenerada = new Agenda();
 
             //seteo los horarios obligatorios en los horarios ocupados
-            this.horariosOcupados = this.horariosObligatorios;
+            for (int i = 0 ; i < this.horariosOcupados.length ; i++){
+                for (int j = 0 ; j < this.horariosOcupados[0].length ; j++){
+                    this.horariosOcupados [i][j] = horariosObligatorios [i][j];
+                }
+            }
 
             //le agrego los eventos obligatorios
             this.agregadorDeObligatorias(agendaGenerada);
@@ -95,10 +109,12 @@ public class CreadorAgendas {
 
             //si ya no tengo mas eventos mas que los obligatorios, dejo de generar agendas
             if ((agendaGenerada.getListaMaterias().size() + agendaGenerada.getListaEventos().size() != this.eventosObligatorios.size())) {
-                agendas.add(agendaGenerada);
                 agendasFlag = true;
             } else
                 agendasFlag = false;
+
+            //asigno la generada
+            agendas.add(agendaGenerada);
 
             //vacio horarios para futura iteracion
             this.vaciarHorariosOcupados();
