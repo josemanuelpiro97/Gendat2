@@ -16,7 +16,7 @@ public class VistaSeleccion extends javax.swing.JPanel implements Observador {
     int observadorID;
     //agenda que muestro
     Agenda agendaSeleccionada;
-    //arreglo para modulo
+    //arreglo para modulo .
     Object matrix[][];
 
 
