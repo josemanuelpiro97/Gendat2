@@ -279,7 +279,7 @@ class UsuarioTest {
         //seteo los horarios de una comision
         usuario.setHorarioOcupado(nuevaComision);
         //reviso contra unos horarios iguales
-        assertEquals(false,usuario.estaEnRango(nuevaComision2));
+        assertEquals(true,usuario.estaEnRango(nuevaComision2));
         //reviso contra unos horarios distintos
         assertEquals(true,usuario.estaEnRango(nuevaComision3));
     }
