@@ -1,4 +1,4 @@
 language: java
 rvm:
-  - RELEASE
-  - junit
+  - 5.7.0
+  - junit-jupiter-api
