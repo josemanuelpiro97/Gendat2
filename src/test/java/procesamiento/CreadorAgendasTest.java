@@ -1,9 +1,9 @@
 package procesamiento;
 
 import BaseDeDatos.*;
-import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
+
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -451,4 +451,5 @@ class CreadorAgendasTest {
         Materia materiaParaTest = creadorAgendas.contructorMateriaSimple(materia,Opcion2);
         assertEquals(2,materiaParaTest.getVariante(0).getIdentificador());
     }
+
 }

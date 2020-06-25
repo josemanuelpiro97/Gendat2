@@ -28,8 +28,8 @@ class UsuarioTest {
         nuevoEvento.setSemestre(false);
         nuevoEvento.setVariante(nuevaComision);
 
-        assertEquals("Evento agregado",usuario.addEvento(nuevoEvento));
-        assertEquals("Evento duplicado",usuario.addEvento(nuevoEvento));
+        assertEquals(true,usuario.addEvento(nuevoEvento));
+        assertEquals(false,usuario.addEvento(nuevoEvento));
 
     }
 
@@ -123,9 +123,9 @@ class UsuarioTest {
         String resultado5 = usuario.addVariante(nuevaComision4,nuevoEvento3.getNombre());
 
         assertEquals("Variante agregada",resultado1);
-        assertEquals("Solo puede haber una variante por evento obligatorio",resultado2);
+        assertEquals("limite variantes sup.",resultado2);
         assertEquals("Evento no encontrado",resultado3);
-        assertEquals("Este evento ocupa una franja horaria que ya esta ocupada por una variante obligatoria",
+        assertEquals("Variante agregada",
                 resultado4);
         assertEquals("Horario invalido",resultado5);
         //--------------------------------------------------------------------------------------------------------------
@@ -279,7 +279,7 @@ class UsuarioTest {
         //seteo los horarios de una comision
         usuario.setHorarioOcupado(nuevaComision);
         //reviso contra unos horarios iguales
-        assertEquals(true,usuario.estaEnRango(nuevaComision2));
+        assertEquals(false,usuario.estaEnRango(nuevaComision2));
         //reviso contra unos horarios distintos
         assertEquals(true,usuario.estaEnRango(nuevaComision3));
     }
@@ -303,7 +303,7 @@ class UsuarioTest {
 
         usuario.setHorarioOcupado(nuevaComision);
 
-        for (int i=(HORA_INI*60+MIN_INI)-1 ; i < (HORA_FIN*60+MIN_FIN)-1 ; i++){
+        for (int i=(HORA_INI*60+MIN_INI)-1 ; i < (HORA_FIN*60+MIN_FIN)-2 ; i++){
             assertEquals(1,usuario.horariosOcupados[DIA][i]);
         }
     }
